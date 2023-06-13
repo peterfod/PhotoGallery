@@ -62,6 +62,8 @@ CREATE TABLE `password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('bela@gmail.com',	'$2y$10$z9hvmdLntuH..JQ2PIMI2.Cnr80d3H.Yt5JSOtk5eSjg97/UFXzL6',	'2023-06-12 17:42:37');
 
 DROP TABLE IF EXISTS `personal_access_tokens`;
 CREATE TABLE `personal_access_tokens` (
@@ -115,5 +117,8 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1,	'Béla',	'bela@gmail.com',	NULL,	'$2y$10$1o6EnTRJEhlImEMZ1Xc4xue1rPyHgfxESOnz4oKEzQ4ScyXncWDMO',	NULL,	'2023-06-12 16:15:54',	'2023-06-12 16:15:54'),
+(2,	'Ödön',	'odon@gmail.com',	NULL,	'$2y$10$BS.NOPmOuYD04el9PKA2SuFixENvNJbQj4v3sVz8bM4czzBp8Io7C',	NULL,	'2023-06-12 16:18:40',	'2023-06-12 16:18:40');
 
--- 2023-06-11 10:08:59
+-- 2023-06-13 16:12:00
