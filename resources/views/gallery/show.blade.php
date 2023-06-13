@@ -8,7 +8,7 @@
               <span class="title-bar-title">Laravel képgaléria</span>
             </div>
           </div>
-          
+
           @if(Session::has('uzenet'))
           <div class="callout success" onClick="$(this).fadeOut()">
             {{Session::get('uzenet')}}
@@ -21,7 +21,16 @@
               <a href="/">Vissza a galériákhoz</a><br />
               <h1>{{ $gallery->name }}</h1>
               <p class="lead">{{ $gallery->description }}</p>
+
+              <?php
+                    if (Auth::check()) {
+              ?>
               <a class="button gomb" href="/photo/create/{{ $gallery->id }}">Új fotó feltöltése</a>
+              <?php
+                 }
+              ?>
+
+
             </div>
           </div>
           <div class="row small-up-2 medium-up-3 large-up-4">

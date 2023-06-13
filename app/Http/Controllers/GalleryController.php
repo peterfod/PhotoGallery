@@ -9,7 +9,7 @@ class GalleryController extends Controller
 {
 	private $galeriak_tabla = 'galleries';
     private $fotok_tabla = 'photos';
-	
+
     public function index() {
        /* $teszt = 'Tesztelünk...';
         return view('gallery/index',compact('teszt')); */
@@ -17,7 +17,7 @@ class GalleryController extends Controller
        /*
 		$galleries = DB::table('galleries')->get();
 		return view('gallery/index', compact('galleries'));
-		*/		
+		*/
 		$galleries = DB::table($this->galeriak_tabla)->get();
 		return view('gallery/index', compact('galleries'));
     }
@@ -49,14 +49,14 @@ class GalleryController extends Controller
         'description' => $leiras,
         'cover_image' => $fajlnev,
         'owner_id' => $tulajdonos
-      ]  
+      ]
     );
 
     return \Redirect::route('gallery.index')->with('uzenet', 'A képgalériát sikeresen létrehoztuk.');
 
   }
 
-    public function show($id) {		
+    public function show($id) {
 		$gallery = DB::table($this->galeriak_tabla)->where('id',$id)->first();
 		$photos = DB::table($this->fotok_tabla)->where('gallery_id',$id)->get();
 		return view('gallery/show', compact('gallery','photos'));

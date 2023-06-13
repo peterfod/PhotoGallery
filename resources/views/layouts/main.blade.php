@@ -25,9 +25,22 @@
             <h5>Főmenü</h5>
             <ul class="vertical menu">
               <li><a href="/">Nyitólap</a></li>
-              <li><a href="#">Belépés</a></li>
-              <li><a href="#">Regisztráció</a></li>
-              <li><a href="/gallery/create">Új képgaléria</a></li>
+
+              <?php
+                    if (!Auth::check()) {
+              ?>
+              <li><a href="/login">Belépés</a></li>
+              <li><a href="/register">Regisztráció</a></li>
+              <?php
+                    }
+                    else {
+               ?>
+                    <li><a href="/gallery/create">Új képgaléria</a></li>
+                    <li><a href="/logout">Kilépés</a></li>
+                    <?php
+                    }
+              ?>
+
             </ul>
           </div>
         </div>
