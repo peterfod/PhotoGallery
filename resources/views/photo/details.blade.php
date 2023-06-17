@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('fejlec')
 
-    <a href="#"><img src="https://picsum.photos/65/65" style="width:65px;"
+    <a href="#"><img src="/fotok/cool-girl.jpg" style="width:65px;"
             class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
@@ -32,12 +32,12 @@
 
     <div class="w3-container w3-padding">
         <div class="w3-card-4" style="display:inline-block; margin: 0px auto">
-            <div class="w3-container">
-                <p><b>Itt készült: {{ $photo->location }}</b></p>
-            </div>
             <a href="/photo/details/{{ $photo->id }}">
                 <img class="" src="/fotok/{{ $photo->gallery_id }}/{{ $photo->image }}">
             </a>
+            <div class="w3-container">
+                <p><b>Itt készült: {{ $photo->location }}</b></p>
+            </div>
         </div>
     </div>
 @stop
