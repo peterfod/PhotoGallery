@@ -1,35 +1,47 @@
 @extends('layouts.main')
 
+@section('fejlec')
+
+    <a href="#"><img src="https://picsum.photos/65/65" style="width:65px;"
+            class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+            class="fa fa-bars"></i></span>
+    <div class="w3-container">
+        <h1><b>Új képgaléria készítése</b></h1>
+        <h5>Készíts új képgalériát és töltsd fel a képeket!</h5>
+        <div class="w3-section w3-bottombar w3-padding-16">
+            <a class="button gomb" href="/"><button class="w3-button w3-black">Vissza a galériákhoz</button></a>
+            <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
+            <button class="w3-button w3-white w3-hide-small"><i
+                    class="fa fa-photo w3-margin-right"></i>Photos</button>
+            <button class="w3-button w3-white w3-hide-small"><i
+                    class="fa fa-map-pin w3-margin-right"></i>Art</button>
+        </div>
+    </div>
+@stop
+
 @section('tartalom')
-        <div class="off-canvas-content" data-off-canvas-content>
-          <div class="title-bar hide-for-large">
-            <div class="title-bar-left">
-              <button class="menu-icon" type="button" data-toggle="fomenu"></button>
-              <span class="title-bar-title">Laravel képgaléria</span>
-            </div>
-          </div>
-          <div class="callout primary">
-            <div class="row column">
-              <h1>Új képgaléria készítése</h1>
-              <p class="lead">Készíts új képgalériát és töltsd fel a képeket!</p>
-            </div>
-          </div>
-          <div class="row small-up-2 medium-up-3 large-up-4">
-            <div class="margo">
-              {!! Form::open(['action' => 'App\Http\Controllers\GalleryController@store', 'enctype' => 'multipart/form-data']) !!}
+<div class="w3-container w3-margin w3-gray" style="max-width:500px" >
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <h5 id="contact"><b>Az új galéria adatai</b></h5>
+    <hr class="w3-opacity">
+    {!! Form::open(['action' => 'App\Http\Controllers\GalleryController@store', 'enctype' => 'multipart/form-data']) !!}
 
-                  {!! Form::label('nev','Név') !!}
-                  {!! Form::text('nev', $value=null, $attributes=['placeholder'=>'Galéria neve', 'name'=>'nev']) !!}
+    {!! Form::label('nev','Név') !!}
+    {!! Form::text('nev', $value=null, $attributes=['placeholder'=>'Galéria neve', 'name'=>'nev', 'class'=>'w3-input w3-border w3-margin-bottom']) !!}
 
-                  {!! Form::label('leiras','Leírás') !!}
-                  {!! Form::text('leiras', $value=null, $attributes=['placeholder'=>'Galéria leírása', 'name'=>'leiras']) !!}
+    {!! Form::label('leiras','Leírás') !!}
+    {!! Form::text('leiras', $value=null, $attributes=['placeholder'=>'Galéria leírása', 'name'=>'leiras', 'class'=>'w3-input w3-border w3-margin-bottom']) !!}
 
-                  {!! Form::label('boritokep','Borítókép') !!}
-                  {!! Form::file('boritokep') !!}
+    {!! Form::label('boritokep','Borítókép') !!}
+    <br>
+    {!! Form::file('boritokep', $attributes=['class'=>'w3-margin-bottom"']) !!}
+    <br><br>
+    {!! Form::submit('Létrehozás', $attributes=['class'=>'w3-button w3-black w3-margin-bottom"']) !!}
+    <br><br>
 
-                  {!! Form::submit('Létrehozás', $attributes=['class'=>'button']) !!}
-                  
-              {!! Form::close() !!}            
-            </div>
-          </div>
+    {!! Form::close() !!}
+</div>
+
 @stop

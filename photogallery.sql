@@ -34,9 +34,9 @@ CREATE TABLE `galleries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `galleries` (`id`, `name`, `description`, `cover_image`, `owner_id`, `created_at`, `updated_at`) VALUES
-(1,	'Első galéria',	'teszt galéria',	'1.jpg',	1,	NULL,	NULL),
-(2,	'Második galéria',	'ez is galéria',	'2.jpg',	1,	NULL,	NULL),
-(3,	'Harmadik galéria',	'próba galéria',	'3.jpg',	1,	NULL,	NULL);
+(1,	'Virágok',	'Virágos képek',	'virag1.jpg',	1,	NULL,	NULL),
+(2,	'Madarak',	'Madaras képek',	'parrot.jpg',	1,	NULL,	NULL),
+(3,	'Állatok',	'Állatos képek',	'deers.jpg',	1,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
@@ -98,10 +98,15 @@ CREATE TABLE `photos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `photos` (`id`, `gallery_id`, `title`, `description`, `location`, `image`, `owner_id`, `created_at`, `updated_at`) VALUES
-(1,	1,	'Koala maci',	'állatos fotó',	'külföldön',	'Koala.jpg',	1,	NULL,	NULL),
-(3,	1,	'Pingvin',	'madár',	'külföldön',	'Penguins.jpg',	1,	NULL,	NULL),
-(4,	2,	'Piros virág',	'virágos',	'kertben',	'Chrysanthemum.jpg',	1,	NULL,	NULL),
-(5,	2,	'Medúza',	'állatos fotó',	'tengeren',	'Jellyfish.jpg',	1,	NULL,	NULL);
+(1,	1,	'Első virág',	'valamilyen virág',	'kertben',	'virag1.jpg',	1,	NULL,	NULL),
+(2,	1,	'Második virág',	'kék virág',	'kertben',	'virag2.jpg',	1,	NULL,	NULL),
+(3,	1,	'Harmadik virág',	'valamilyen virág',	'kertben',	'virag3.jpg',	1,	NULL,	NULL),
+(4,	2,	'Papagáj',	'valamilyen papagáj',	'állatkertben',	'parrot.jpg',	1,	NULL,	NULL),
+(5,	2,	'Pingvinek',	'sok kis pingvin',	'állatkertben',	'penguins.jpg',	1,	NULL,	NULL),
+(6,	2,	'Bagoly',	'valamilyen bagoly',	'állatkertben',	'owl.jpg',	1,	NULL,	NULL),
+(7,	3,	'Őzek',	'sok kis őz',	'erdőben',	'deers.jpg',	1,	NULL,	NULL),
+(8,	3,	'Majom',	'valamilyen majom',	'állatkertben',	'monkey.jpg',	1,	NULL,	NULL),
+(9,	3,	'Tehén',	'Lorem ipsum dolor sit amet',	'vidéken',	'cow.jpg',	1,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -119,6 +124,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1,	'Béla',	'bela@gmail.com',	NULL,	'$2y$10$1o6EnTRJEhlImEMZ1Xc4xue1rPyHgfxESOnz4oKEzQ4ScyXncWDMO',	NULL,	'2023-06-12 16:15:54',	'2023-06-12 16:15:54'),
-(2,	'Ödön',	'odon@gmail.com',	NULL,	'$2y$10$BS.NOPmOuYD04el9PKA2SuFixENvNJbQj4v3sVz8bM4czzBp8Io7C',	NULL,	'2023-06-12 16:18:40',	'2023-06-12 16:18:40');
+(2,	'Ödön',	'odon@gmail.com',	NULL,	'$2y$10$BS.NOPmOuYD04el9PKA2SuFixENvNJbQj4v3sVz8bM4czzBp8Io7C',	NULL,	'2023-06-12 16:18:40',	'2023-06-12 16:18:40'),
+(3,	'demo',	'demo@demo',	NULL,	'$2y$10$/1AsFKDFvNZPFe4BQY/.euqgQ1j6PI/bnDvGccQuL4KJ8/rQYIIi2',	NULL,	'2023-06-16 17:38:14',	'2023-06-16 17:38:14');
 
--- 2023-06-13 16:12:00
+-- 2023-06-16 19:40:52

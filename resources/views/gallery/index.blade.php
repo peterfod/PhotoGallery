@@ -2,42 +2,45 @@
 
 @extends('layouts.main')
 
-@section('tartalom')
-	<div class="off-canvas-content" data-off-canvas-content>
-	  <div class="title-bar hide-for-large">
-		<div class="title-bar-left">
-		  <button class="menu-icon" type="button" data-open="my-info"></button>
-		</div>
-	  </div>
-		  
-	  @if(Session::has('uzenet'))
-	  <div class="callout success" onClick="$(this).fadeOut()">
-		{{Session::get('uzenet')}}
-		<button class="close-button" type="button">&times;</button>
-	  </div>
-	  @endif
-		  
-	  <div class="callout primary">
-		<div class="row column">
-		  <h1>Fotógaléria</h1>
-		  <p class="lead">Laravel minta projekt</p>
-		</div>
-	  </div>
-	  <div class="row small-up-2 medium-up-3 large-up-4">
-		<?php
-		foreach($galleries as $gallery) {
-		  ?>
-		  <div class="column">
-			<a href="/gallery/show/{{ $gallery->id }}">
-			  <img class="thumbnail" src="boritokepek/{{ $gallery->cover_image }}">
-			</a>
-			<h5>{{ $gallery->name }}</h5>
-			<p>{{ $gallery->description }}</p>
-		  </div>
-		  <?php
-		}
-		?>
-	  </div>
-	</div>
+@section('fejlec')
+
+    <a href="#"><img src="/fotok/cool-girl.jpg" style="width:65px;"
+            class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+        <h1><b>Photo Gallery</b></h1>
+        <h5>Laravel minta projekt</h5>
+        <div class="w3-section w3-bottombar w3-padding-16">
+            <button class="w3-button w3-black">ALL</button>
+            <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
+            <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
+            <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
+        </div>
+    </div>
 @stop
 
+@section('tartalom')
+
+    <?php
+        foreach($galleries as $gallery) {
+    ?>
+    <div class="w3-third w3-container w3-padding">
+        <div class="w3-card-4">
+            <a href="/gallery/show/{{ $gallery->id }}">
+                <img src="boritokepek/{{ $gallery->cover_image }}" alt="thumbnail" style="width:100%"
+                    class="w3-hover-opacity">
+            </a>
+            <div class="w3-container">
+                <p><b>{{ $gallery->name }}</b></p>
+                <p>{{ $gallery->description }}</p>
+            </div>
+        </div>
+    </div>
+    <?php
+        }
+    ?>
+    <div class="w3-container">
+        <p class="w3-text-grey">Images from <a href="https://www.pexels.com" target="_blank">Pexels</a></p>
+    </div>
+
+@stop

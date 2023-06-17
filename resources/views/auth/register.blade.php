@@ -1,127 +1,84 @@
 @extends('layouts.main')
 
+@section('fejlec')
+
+    <a href="#"><img src="https://picsum.photos/65/65" style="width:65px;"
+            class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+            class="fa fa-bars"></i></span>
+    <div class="w3-container">
+        <h1><b>Photo Gallery</b></h1>
+        <h5>Laravel minta projekt</h5>
+        <div class="w3-section w3-bottombar w3-padding-16">
+            <button class="w3-button w3-black">ALL</button>
+            <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
+            <button class="w3-button w3-white w3-hide-small"><i
+                    class="fa fa-photo w3-margin-right"></i>Photos</button>
+            <button class="w3-button w3-white w3-hide-small"><i
+                    class="fa fa-map-pin w3-margin-right"></i>Art</button>
+        </div>
+    </div>
+@stop
+
 @section('tartalom')
-        <div class="off-canvas-content" data-off-canvas-content>
-          <div class="title-bar hide-for-large">
-            <div class="title-bar-left">
-              <button class="menu-icon" type="button" data-toggle="fomenu"></button>
-              <span class="title-bar-title">Laravel képgaléria</span>
+    <div class="w3-container w3-margin w3-round-xlarge w3-border" style="max-width:500px" >
+        <h4 id="contact"><b>Regisztráció</b></h4>
+        {{-- <hr class="w3-opacity"> --}}
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+
+            <!-- Name -->
+            <div class="w3-section">
+                <x-input-label for="name" :value="__('Név')" />
+                <x-text-input id="name" class="block mt-1 w-full  w3-input w3-border" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
-          </div>
-          <div class="callout primary">
-            <div class="row column">
-              <h1>Regisztráció</h1>
-              <p class="lead">A képek feltöltése csak regisztrált tagoknak elérhető!</p>
+
+            <!-- Email Address -->
+            <div class="mt-4 w3-section">
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" class="block mt-1 w-full  w3-input w3-border" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
-          </div>
-          <div class="row small-up-2 medium-up-3 large-up-4">
-            <div class="margo">
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
 
-                    <!-- Name -->
-                    <div>
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
+            <!-- Password -->
+            <div class="mt-4 w3-section">
+                <x-input-label for="password" :value="__('Jelszó')" />
 
-                    <!-- Email Address -->
-                    <div class="mt-4">
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
+                <x-text-input id="password" class="block mt-1 w-full  w3-input w3-border"
+                                type="password"
+                                name="password"
+                                required autocomplete="new-password" />
 
-                    <!-- Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password" :value="__('Password')" />
-
-                        <x-text-input id="password" class="block mt-1 w-full"
-                                        type="password"
-                                        name="password"
-                                        required autocomplete="new-password" />
-
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                        <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                        type="password"
-                                        name="password_confirmation" required autocomplete="new-password" />
-
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
-
-                    <div class="flex items-center justify-end mt-4">
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a>
-
-                        <x-primary-button class="ml-4">
-                            {{ __('Register') }}
-                        </x-primary-button>
-                    </div>
-                </form>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
-          </div>
+
+            <!-- Confirm Password -->
+            <div class="mt-4 w3-section">
+                <x-input-label for="password_confirmation" :value="__('Jelszó ismétlése')" />
+
+                <x-text-input id="password_confirmation" class="block mt-1 w-full w3-input w3-border"
+                                type="password"
+                                name="password_confirmation" required autocomplete="new-password" />
+
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+
+            <div class="flex items-center justify-end mt-4 w3-section">
+                <x-primary-button class="ml-4 w3-button w3-black w3-margin-bottom">
+                    {{ __('Regisztráció') }}
+                </x-primary-button>
+                <br>
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    {{ __('Már van azonosítóm, belépek') }}
+                </a>
+                <br>
+
+            </div>
+        </form>
+    </div>
+
 @stop
 
 
-{{-- ez volt a gyári:
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
---}}
