@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        body, h1, h2, h3, h4, h5, h6 {
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: "Raleway", sans-serif
         }
     </style>
@@ -74,11 +80,19 @@ else {
         <!-- Header -->
 
         <header id="portfolio">
+            <a href="#"><img src="/fotok/cool-girl.jpg" style="width:65px;"
+                    class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+            <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+                    class="fa fa-bars"></i></span>
+
             @yield('fejlec')
+
         </header>
         <!-- First Photo Grid-->
         <div class="w3-row-padding">
+
             @yield('tartalom')
+            
         </div>
 
 
